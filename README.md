@@ -1,6 +1,6 @@
 # XDR and SIEM Solution with Wazuh - Proof of Concept
 
-## Overview:
+## Overview
 
 This repository contains a Proof of Concept (PoC) for integrating Wazuh as an XDR and SIEM solution within a Kubernetes environment. The PoC demonstrates how Wazuh can be used to monitor and detect security events on vulnerable endpoints. The setup includes a local Kubernetes cluster using Minikube, with the Wazuh Manager, Wazuh Indexer, Wazuh Dashboard, and various vulnerable endpoints deployed in the cluster.
 
