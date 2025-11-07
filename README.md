@@ -1,17 +1,17 @@
 # XDR and SIEM Solution with Wazuh - Proof of Concept
 
-## Overview
+## Overview:
 
 This repository contains a Proof of Concept (PoC) for integrating Wazuh as an XDR and SIEM solution within a Kubernetes environment. The PoC demonstrates how Wazuh can be used to monitor and detect security events on vulnerable endpoints. The setup includes a local Kubernetes cluster using Minikube, with the Wazuh Manager, Wazuh Indexer, Wazuh Dashboard, and various vulnerable endpoints deployed in the cluster.
 
-## Table of Contents
+## Table of Contents:
 
 - [Setup](#setup)
 - [Deploying the PoC](#deploying-the-poc)
 - [Exploring Vulnerable Endpoints](#exploring-vulnerable-endpoints)
 - [Cleanup](#cleanup)
 
-## Setup
+## Setup:
 
 ### 1. Clone the Repository
 
@@ -48,7 +48,7 @@ minikube status
 ```
 You should see output indicating that Minikube and its components are running.
 
-## Deploying the PoC
+## Deploying the PoC:
 
 ### 1. Deploy Wazuh Components and Vulnerable Endpoints
 
@@ -89,7 +89,7 @@ This Command will return the URL. Open this URL n your Browser to access the Waz
 
 After logging in, you will see the Wazuh Dashboard, which provides a comprehensive overview of the security events and alerts.
 
-## Exploring Vulnerable Endpoints
+## Exploring Vulnerable Endpoints:
 
 The PoC deploys several vulnerable endpoints that the Wazuh agents will monitor:
 
@@ -101,19 +101,19 @@ You can interact with these endpoints using Minikube to generate some logs and a
 
 Some examples include:
 
-#### Port Scans
+#### Port Scans:
 ```bash
 kubectl exec -it <linux-pod-name> -- nmap localhost
 ```
 Replace *linux-pod-name* with the actual name of your Linux pod. This command will run an nmap scan within the Linux server, simulating an external port scan.
 
-#### Directory Traversal
+#### Directory Traversal:
 ```bash
 kubectl exec -it <web-server-pod-name> -- bash -c "curl http://localhost/../../../../etc/passwd"
 ```
 Replace *web-server-pod-name* with the actual name of your web server pod. This command tries to read the /etc/passwd file using directory traversal, which should be detected by Wazuh.
 
-#### Brute Force/Login Falures 
+#### Brute Force/Login Falures:
 ```bash
 kubectl exec -it <linux-pod-name> -- bash -c "for i in {1..5}; do ssh wronguser@localhost; done"
 ```
@@ -121,7 +121,7 @@ kubectl exec -it <linux-pod-name> -- bash -c "for i in {1..5}; do ssh wronguser@
 Run this command to send 5 failed SSH attempts in a row. 
 
 
-## Cleanup
+## Cleanup:
 
 After you are done exploring the PoC, you can clean up the resources to free up your local environment:
 
